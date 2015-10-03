@@ -60,8 +60,8 @@ int main()
     mat A_Arm = A;
     uvec diagonalA_1;
     mat R_1 = eye<mat>(n,n);
-    cout << "The single electron case: " << endl;
-    JacobiRotations(n, rho_max, A, diagonalA_1, R_1);
+    //cout << "The single electron case: " << endl;
+    //JacobiRotations(n, rho_max, A, diagonalA_1, R_1);
 
 
     //====================================================
@@ -69,7 +69,7 @@ int main()
     //====================================================
     vec Psi_anal;
     AnalyticSolution(n, h, Psi_anal);
-    cout << "Analytic Solution: " << AnalyticSolution << endl;
+    //cout << "Analytic Solution: " << AnalyticSolution << endl;
     SavingResults("anal_sol.m", "rho", "Psi", rho, Psi_anal);
 
 
@@ -80,14 +80,14 @@ int main()
     //=====================================
     mat eigvec1;
     vec eigval1;
-    eig_sym(eigval1, eigvec1, A_Arm);
+    //eig_sym(eigval1, eigvec1, A_Arm);
 
 
     //=================================
     //Printing the Armadillo solutions
     //=================================
-    cout << "Armadillo Calculations " << endl;
-    cout << "lambda0: " << eigval1(0) << "   lambda1: " << eigval1(1) << "   lambda2: " << eigval1(2) << endl;
+//    cout << "Armadillo Calculations " << endl;
+//    cout << "lambda0: " << eigval1(0) << "   lambda1: " << eigval1(1) << "   lambda2: " << eigval1(2) << endl;
 
 
     //=========================================
@@ -107,11 +107,11 @@ int main()
     mat Psi_Arma = Psi;
     uvec diagonalPsi_1;
     mat R_2 = eye<mat>(n,n);
-    cout << "The two-electron case" << endl;
-    JacobiRotations(n, rho_max, Psi, diagonalPsi_1, R_2);
+//    cout << "The two-electron case" << endl;
+//    JacobiRotations(n, rho_max, Psi, diagonalPsi_1, R_2);
 
-    //cout << "her er jeg" << endl;
-    SavingResults("noen.m", "rho", "Psi", rho, eigvec1.col(2));
+//    //cout << "her er jeg" << endl;
+//    SavingResults("noen.m", "rho", "Psi", rho, eigvec1.col(2));
 
 
 
@@ -129,7 +129,7 @@ void SavingResults(string filename, string name_Vec1, string name_Vec2, vec Vec1
 
     myfile << name_Vec2 << "= [";
     for(int i=0; i<int(Vec2.n_rows); i++){
-        myfile << Vec2(i)*Vec2(i) << ", ";
+        myfile << Vec2(i) << ", ";
     }
 
     myfile << "];" << endl;
@@ -262,18 +262,14 @@ void findSinAndCos(mat &A, int k, int l, double &c, double &s) {
 //=========================================================
 
 void AnalyticSolution(int n, double h, vec &Psi_anal){
-    vec psi(n+2);
     vec r(n+2);
-
+    int l=0;
     for(int i=0; i<n+2; i++){
         r(i) += i*h;
     }
-
     r(0) = 0;
-
-
-
-    Psi_anal = r % exp(-pow(r, 2)/(8)) % (1 + r/(2));
+    Psi_anal = r % exp(- pow(r, 2) / 8 ) % (1 + r / 2);
+    //Psi_anal = pow(r, 1) % exp(- pow(r, 2) / (8*(l+1)) ) % ( 1 + r / (2*(l+1) ) );
 
 }
 
