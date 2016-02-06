@@ -144,7 +144,6 @@ void SavingResults(string filename, string name_Vec1, string name_Vec2, vec Vec1
 void rotateMatrix(mat &A, int k, int l, double c, double s, int n, mat &R) {
     for(int i=0; i<n; i++){
         if(i != k && i != l){
-            A(i,i) = A(i,i);
             double a_il = A(i,l);
             double a_ik = A(i,k);
             A(i,k) = c*a_ik - s*a_il;
@@ -154,7 +153,7 @@ void rotateMatrix(mat &A, int k, int l, double c, double s, int n, mat &R) {
 
         }
 
-        //Finding
+        //Finding the eigenvectors by rotating an identity matrix
         double r_ik = R(i,k);
         double r_il = R(i,l);
         R(i,k) = c*r_ik - s*r_il;
@@ -166,7 +165,7 @@ void rotateMatrix(mat &A, int k, int l, double c, double s, int n, mat &R) {
 
     A(k,k) = c*c*a_kk - 2.*c*s*A(k,l) + s*s*a_ll;
     A(l,l) = s*s*a_kk + 2.*c*s*A(k,l) + c*c*a_ll;
-    A(k,l) = 0;
+    A(k,l) = 0; // Demanding these to be zero
     A(l,k) = 0;
 
 
