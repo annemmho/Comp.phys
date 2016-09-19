@@ -8,7 +8,7 @@
 #include "armadillo"
 #include "numerical.h"
 #include "lu_decomp.h"
-#include "lu_arma.h"
+
 
 
 
