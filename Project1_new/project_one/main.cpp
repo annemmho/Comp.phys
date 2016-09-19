@@ -21,7 +21,7 @@ void ClosedForm(int , double * , double * );
 
 void Error(int n, double *v, double *v_cf, double *h);
 
-mat LU(int n, double *h, double *x);
+mat LU(int n, double h, double *x);
 
 
 int main(){
@@ -96,21 +96,22 @@ void ClosedForm(int n, double *x, double *v_cf){
 }
 
 
-mat LU(int n, double *h, double *x){
+mat LU(int n, double h, double *x){
     mat A2 = zeros<mat>(n+1,n+1);
 
-    A2.diag() = 2.;
-    A2.diag(1) = -1.;
-    A2.diag(-1) = -1.;
+    A2.diag() += 2.;
+    A2.diag(1) += -1.;
+    A2.diag(-1) += -1.;
 
     mat L, U, P;
     vec y, x_lu;
-    double b_tilde;
+    //double b_tilde;
+    mat b_tilde = zeros<mat>(n+1,1);
 
 
     for(int i=1; i<=n; i++){
         x[i] = i*h;
-        b_tilde[i] = h*h*100*exp(-10*x[i]);
+        b_tilde(i) = h*h*100*exp(-10*x[i]);
     }
 
 
