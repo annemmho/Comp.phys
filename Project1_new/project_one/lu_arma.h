@@ -1,5 +1,5 @@
-#ifndef LU_DECOMP_H
-#define LU_DECOMP_H
+#ifndef LU_ARMA_H
+#define LU_ARMA_H
 
 
 #include <iostream>
@@ -9,9 +9,8 @@
 
 using namespace arma;
 
+mat lu_arma(int, double, mat, mat);
 
-mat lu_decomp(int , double , mat, mat);
 
-
-#endif // LU_DECOMP_H
+#endif // LU_ARMA_H
 

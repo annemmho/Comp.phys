@@ -1,6 +1,15 @@
 #include <iostream>
 #include "numerical.h"
 #include <time.h>
+#include "lu_decomp.h"
+#include <cmath>
+#include <typeinfo>
+#include <stdio.h>
+#include <string>
+#include "armadillo"
+
+
+
 
 using namespace std;
 
@@ -13,13 +22,13 @@ void numerical(int n, double *a, double *b, double *c, double *v, double *b_tild
     int i;
 
     //Time:
-    //clock_t, start, finish;
+    clock_t start, finish ;
 
     double t[n+1];
     double b_temp = b[1];
 
     // Starting the timer
-    //start = clock();
+    start = clock();
 
 
 
@@ -46,9 +55,11 @@ void numerical(int n, double *a, double *b, double *c, double *v, double *b_tild
     }
 
     //Ending timer
-    //finish = clock();
+    finish = clock();
 
 
-    //printf ("Time elapsed for numerical: %5.9f seconds.\n", ( (float)( finish - start ) / CLOCKS_PER_SEC ));
+    printf ("Time taken for Substitution to run: %5.9f seconds.\n", ( (float)( finish - start ) / CLOCKS_PER_SEC ));
+
+    cout << "Numerical Substition works! Yay!" << endl;
 }
 
